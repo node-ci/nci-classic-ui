@@ -1,0 +1,7 @@
+.npmignore
+test
+static/js
+.bowerrc
+bower.json
+*.tgz
+gulpfile.js
