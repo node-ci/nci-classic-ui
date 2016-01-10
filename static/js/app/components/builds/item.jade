@@ -46,13 +46,6 @@ mixin statusText(build)
 					span )
 
 			.builds_controls
-				if build.completed
-					.builds_buttons
-						a.btn.btn-sm.btn-default(href="javascript:void(0);", onClick=this.onRebuildProject(build.project.name))
-							i.fa.fa-fw.fa-repeat(title="Rebuild")
-							| 
-							| Build again
-
 				if build.status === 'in-progress'
 					.builds_progress
 						if build.project.avgBuildDuration
