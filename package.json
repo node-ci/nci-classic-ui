@@ -52,5 +52,8 @@
     "main-bower-files": "2.7.0",
     "nrun": "0.1.4",
     "requirejs": "2.1.19"
+  },
+  "peerDependencies": {
+    "nci": "0.9.x"
   }
 }
