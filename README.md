@@ -2,6 +2,19 @@
 
 Web interface for [nci](https://github.com/node-ci/nci).
 
+It's damn fast single page web application which immediately responds on any
+user interaction. This app doesn't use http api, it's built using only realtime 
+technologies for communication (socket.io). When any build action (start, 
+cancel, completion, etc) takes place on server side all clients will know about
+that immediately. So you almost never need to refresh page by yourself.
+
+It also has beautiful build console output which is very close to terminal
+emulator.
+
+Currently this app doesn't provide any project manipulation actions (edit
+config, rename or remove project, etc).
+
+
 ## Installation
 
 ```sh
