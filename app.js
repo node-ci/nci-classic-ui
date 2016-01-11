@@ -26,6 +26,7 @@ exports.register = function(oiginalApp) {
 				res.write(index({env: env}));
 				res.end();
 			} else {
+				res.setHeader('content-type', 'text/html');
 				fs.createReadStream(path.join(staticPath, 'index.html'))
 					.pipe(res);
 			}
