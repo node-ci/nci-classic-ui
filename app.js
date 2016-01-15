@@ -3,7 +3,8 @@
 var _ = require('underscore'),
 	fs = require('fs'),
 	path = require('path'),
-	env = process.env.NODE_ENV || 'development';
+	env = process.env.NODE_ENV || 'development',
+	indexTemplate = require('./views/index');
 
 exports.register = function(oiginalApp) {
 	var app = _(oiginalApp).clone(),
@@ -19,17 +20,13 @@ exports.register = function(oiginalApp) {
 	// listeners
 	app.httpServer.addRequestListener(function(req, res, next) {
 		if (req.url.indexOf('/data.io.js') === -1) {
-			if (env === 'development') {
-				var jade = require('jade');
-				// Compile a function
-				var index = jade.compileFile(__dirname + '/views/index.jade');
-				res.write(index({env: env}));
-				res.end();
-			} else {
-				res.setHeader('content-type', 'text/html');
-				fs.createReadStream(path.join(staticPath, 'index.html'))
-					.pipe(res);
-			}
+			var indexHtml = indexTemplate({
+				env: env,
+				config: {http: _(app.config.http).pick('url', 'ws')}
+			});
+
+			res.setHeader('content-type', 'text/html');
+			res.end(indexHtml);
 		} else {
 			next();
 		}

@@ -22,6 +22,9 @@ html
 				include ../static/js/app.build.js
 
 		script(type="text/javascript").
+			define('config', !{JSON.stringify(config)});
+
+		script(type="text/javascript").
 			require(['app/app']);
 
 	body

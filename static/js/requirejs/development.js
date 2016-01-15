@@ -2,6 +2,7 @@
 require.config({
 	baseUrl: '/js',
 	paths: {
+		config: 'empty:',
 		socketio: '/socket.io/socket.io',
 		_dataio: '/data.io',
 		underscore: 'libs/underscore/underscore',

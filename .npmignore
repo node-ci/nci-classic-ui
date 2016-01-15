@@ -1,6 +1,7 @@
 .npmignore
 test
 static/js
+views/index.jade
 .bowerrc
 bower.json
 *.tgz

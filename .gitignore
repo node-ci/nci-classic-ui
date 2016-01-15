@@ -3,4 +3,4 @@ static/css/**/*.css
 static/fonts
 static/js/libs
 static/js/templates
-static/index.html
+views/index.js

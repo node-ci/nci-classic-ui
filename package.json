@@ -8,9 +8,8 @@
     "dev": "gulp",
     "sync": "npm install && npm prune && bower install && bower prune",
     "buildJs": "r.js -o static/js/requirejs/buid.js",
-    "buildClean": "rm static/index.html",
-    "buildHtml": "jade views/index.jade --obj '{\"env\": \"production\"}' -o static/",
-    "build": "gulp less && gulp fonts && gulp react-jade && npm run buildJs && npm run buildHtml && git checkout static/js/app.build.js"
+    "buildClean": "rm static/index.js",
+    "build": "gulp less && gulp fonts && gulp react-jade && npm run buildJs && gulp common-jade && git checkout static/js/app.build.js"
   },
   "repository": {
     "type": "git",
@@ -46,6 +45,8 @@
   "devDependencies": {
     "bower": "1.4.1",
     "gulp": "3.8.11",
+    "gulp-define-module": "0.1.4",
+    "gulp-jade": "1.1.0",
     "gulp-less": "3.0.3",
     "gulp-react-jade-amd": "git://github.com/vladimir-polyakov/gulp-react-jade-amd",
     "jade": "1.11.0",
