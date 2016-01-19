@@ -64,8 +64,9 @@ mixin statusText(build)
 					i.fa.fa-fw.fa-clock-o
 					| finished 
 					DateTime(value=build.endDate)
+					| , took
 					| 
-					Duration(value=(build.endDate - build.startDate), withSuffix=true)
+					Duration(value=(build.endDate - build.startDate))
 			else
 				if build.startDate
 					span.builds_info
