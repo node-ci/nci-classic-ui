@@ -16,5 +16,10 @@
 								if item.project.avgBuildDuration
 									Progress(build=item)
 
-						if !item.endDate
-							DateTime(value=item.endDate)
+						if item.endDate
+							div
+								DateTime(value=item.endDate)
+							div
+								| took
+								| 
+								Duration(value=(item.endDate - item.startDate))
