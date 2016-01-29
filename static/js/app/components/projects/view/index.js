@@ -5,17 +5,16 @@ define([
 	'app/actions/project',
 	'app/actions/build',
 	'app/stores/project',
+	'app/components/projects/header/index',
 	'app/components/builds/list',
-	'app/components/common/scm/index',
 	'templates/app/components/projects/view/index',
-	'app/components/common/index',
-	'bootstrap/dropdown'
+	'app/components/common/index'
 ], function(React, Reflux, ProjectActions, BuildActions,
-	projectStore, Builds, Scm, template, CommonComponents
+	projectStore, ProjectHeader, Builds, template, CommonComponents
 ) {
 	template = template.locals({
+		ProjectHeader: ProjectHeader,
 		Builds: Builds,
-		Scm: Scm,
 		DateTime: CommonComponents.DateTime,
 		Duration: CommonComponents.Duration
 	});
@@ -38,12 +37,6 @@ define([
 			willTransitionTo: function(transition, params, query) {
 				ProjectActions.read({name: params.name});
 				BuildActions.readAll({projectName: params.name});
-			}
-		},
-		onBuildProject: function() {
-			if (this.state.project.name) {
-				console.log(this.state.project.name);
-				ProjectActions.run(this.state.project.name);
 			}
 		},
 		render: template
