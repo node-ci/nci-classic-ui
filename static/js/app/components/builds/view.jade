@@ -11,19 +11,21 @@ mixin statusBadge(build)
 	if build.status === 'error'
 		span.label.label-danger error
 
-.row
+div
 	if this.state.build
+		ProjectHeader(project=this.state.build.project)
+
 		.col-sm-3.hidden-xs
 			BuildSidebar(projectName=this.state.build.project.name, currentBuild=this.state.build)
 
 		.col-sm-9
-			h1.page-header
+			h2
 				.pull-right(style={fontSize: '22px'})
 					mixin statusBadge(this.state.build)
 				span Build #
 				span= this.state.build.number
 
-				.small.text-muted
+				.small.text-muted(style={fontSize: '14px'})
 					| Initiated by 
 					- var initiator = this.state.build.initiator;
 					if initiator.type === 'build'
@@ -37,8 +39,6 @@ mixin statusBadge(build)
 							span= initiator.number
 					else
 						span= initiator.type
-
-			//- hr
 
 			.build-view_info
 				if this.state.build.error

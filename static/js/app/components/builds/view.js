@@ -9,12 +9,14 @@ define([
 	'app/components/terminal/terminal',
 	'app/components/buildSidebar/index',
 	'templates/app/components/builds/view',
-	'app/components/common/index'
+	'app/components/common/index',
+	'app/components/projects/header/index'
 ], function(
 	React, Router, Reflux, BuildActions, buildStore, TerminalComponent,
-	BuildSidebar, template, CommonComponents
+	BuildSidebar, template, CommonComponents, ProjectHeader
 ) {
 	template = template.locals({
+		ProjectHeader: ProjectHeader,
 		DateTime: CommonComponents.DateTime,
 		Duration: CommonComponents.Duration,
 		Scm: CommonComponents.Scm,
