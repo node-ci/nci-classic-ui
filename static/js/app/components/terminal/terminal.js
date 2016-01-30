@@ -28,27 +28,8 @@ define([
 			this.listenTo(terminalStore, this.updateItems);
 			var node = document.getElementsByClassName('terminal')[0];
 			this.initialScrollPosition = node.getBoundingClientRect().top;
-			if (this.props.showPreloader) {
-				this.getTerminal().insertAdjacentHTML('afterend',
-					'<img src="/images/preloader.gif" class="terminal_preloader"/>'
-				);
-
-				this.listenTo(buildStore, function(build) {
-					if (build.completed) {
-						this.removePreloader();
-					}
-				});
-			}
 
 			window.onscroll = this.onScroll;
-		},
-		removePreloader: function() {
-			var preloader = document.getElementsByClassName(
-				'terminal_preloader'
-			)[0];
-			if (preloader) {
-				preloader.parentNode.removeChild(preloader);
-			}
 		},
 		componentWillUnmount: function() {
 			window.onscroll = null;

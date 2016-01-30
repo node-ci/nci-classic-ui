@@ -119,7 +119,11 @@ mixin statusBadge(build)
 				| Console output
 			.build-view_terminal
 				if this.state.showConsole
-					Terminal(build=this.state.build.id, showPreloader=true)
+					Terminal(build=this.state.build.id)
+
+					if this.state.build.status === 'in-progress'
+						.text-center
+							img(src="/images/preloader.gif")
 
 					if this.state.build.completed
 						if this.state.build.error

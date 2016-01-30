@@ -95,15 +95,6 @@
 				&__in-progress {
 					&:after {
 						background: @brand-info;
-
-						-webkit-animation: pulsate @animation-duration ease-out;
-						-webkit-animation-iteration-count: infinite;
-						-moz-animation: pulsate @animation-duration ease-out;
-						-moz-animation-iteration-count: infinite;
-						-o-animation: pulsate @animation-duration ease-out;
-						-o-animation-iteration-count: infinite;
-						animation: pulsate @animation-duration ease-out;
-						animation-iteration-count: infinite;
 					}
 				}
 
@@ -142,6 +133,12 @@
 				&_item {
 					padding-left: 40px;
 
+					&__in-progress {
+						&:after {
+							background: white url("/images/build/progress.gif") center center no-repeat;
+						}
+					}
+
 					&:after {
 						width: 24px;
 						height: 24px;
@@ -165,6 +162,12 @@
 			.builds {
 				&_item {
 					padding-left: 30px;
+
+					&__in-progress {
+						&:after {
+							background: white url("/images/build/progress-small.gif") center center no-repeat;
+						}
+					}
 
 					&:after {
 						top: 16px;
@@ -202,7 +205,7 @@
 
 				&_controls {
 					.make-xs-column(6);
-					font-size: 12px;
+					font-size: 11px;
 				}
 
 				&_progress {
@@ -345,31 +348,3 @@
 		}
 	}
 }
-
-.pulsate-frames() {
-	.transform(@scaleX, @scaleY) {
-		-webkit-transform: scale3d(@scaleX, @scaleY, 1);
-		-moz-transform: scale3d(@scaleX, @scaleY, 1);
-		-ms-transform: scale3d(@scaleX, @scaleY, 1);
-		-o-transform: scale3d(@scaleX, @scaleY, 1);
-		transform: scale3d(@scaleX, @scaleY, 1);
-	}
-
-	0% {
-		.transform(1, 1);
-	}
-
-	50% {
-		.transform(0.75, 0.75);
-	}
-
-	100% {
-		.transform(1, 1);
-	}
-}
-
-@-webkit-keyframes pulsate {.pulsate-frames}
-@-moz-keyframes pulsate {.pulsate-frames}
-@-ms-keyframes pulsate {.pulsate-frames}
-@-o-keyframes pulsate {.pulsate-frames}
-@keyframes pulsate {.pulsate-frames}
