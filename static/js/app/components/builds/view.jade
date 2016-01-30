@@ -87,15 +87,21 @@ div
 				- var scm = this.state.build.scm;
 				- var rev = scm && scm.rev;
 				- var changes = scm && scm.changes;
+				- var targetScmRev = this.state.build.project.scm.rev;
 				.row
 					.col-md-12
 						p
 							i.fa.fa-fw.fa-code-fork
+							| Scm target is
+							| 
+							span= targetScmRev
+							| ,
+							| 
 							if changes
 								if changes.length
-									| Scm changes:
+									| changes:
 								else
-									| No scm changes, current revision is
+									| no changes, current revision is
 									| 
 									| "
 									mixin rev(rev)
