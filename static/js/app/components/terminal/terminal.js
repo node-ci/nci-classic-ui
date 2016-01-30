@@ -28,8 +28,25 @@ define([
 			this.listenTo(terminalStore, this.updateItems);
 			var node = document.getElementsByClassName('terminal')[0];
 			this.initialScrollPosition = node.getBoundingClientRect().top;
+			if (this.props.showPreloader) {
+				this.setPreloaderDisplay(true);
+
+				this.listenTo(buildStore, function(build) {
+					if (build.completed) {
+						this.setPreloaderDisplay(false);
+					}
+				});
+			}
 
 			window.onscroll = this.onScroll;
+		},
+		setPreloaderDisplay: function(show) {
+			var preloader = document.getElementsByClassName('js-terminal-preloader')[0];
+			if (show) {
+				preloader.style.display = 'block';
+			} else {
+				preloader.style.display = 'none';
+			}
 		},
 		componentWillUnmount: function() {
 			window.onscroll = null;
@@ -101,7 +118,7 @@ define([
 				this.renderBuffer();
 			}
 			if (this.props.showPreloader && build.buildCompleted) {
-				this.removePreloader();
+				this.setPreloaderDisplay(false);
 			}
 		},
 		shouldComponentUpdate: function() {
