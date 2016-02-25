@@ -9,26 +9,11 @@ html
 			style
 				include ../static/css/index.css
 
-		if env === 'development'
-			script(type="text/javascript", src="/js/libs/requirejs/require.js")
-		else
-			script
-				include ../static/js/libs/almond/almond.js
-
-		if env === 'development'
-			script
-				include ../static/js/requirejs/development.js
-		else
-			script
-				include ../static/js/requirejs/production.js
-			script
-				include ../static/js/app.build.js
-
-		script(type="text/javascript").
-			define('config', !{JSON.stringify(config)});
-
-		script(type="text/javascript").
-			require(['app/app']);
-
 	body
 		#content
+
+		if env === 'development'
+			script(type="text/javascript", src="/js/app.build.js")
+		else
+			script
+				include ../static/js/app.build.js

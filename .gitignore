@@ -1,6 +1,6 @@
 node_modules
 static/css/**/*.css
 static/fonts
-static/js/libs
-static/js/templates
+static/js
+static/index.html
 views/index.js

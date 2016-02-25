@@ -4,7 +4,13 @@ var _ = require('underscore'),
 	fs = require('fs'),
 	path = require('path'),
 	env = process.env.NODE_ENV || 'development',
-	indexTemplate = require('./views/index');
+	jade = require('jade');
+
+var templatePath = __dirname + '/views/index.jade',
+	template = fs.readFileSync(templatePath),
+	indexTemplate = jade.compile(template, {
+		filename: templatePath
+	});
 
 exports.register = function(oiginalApp) {
 	var app = _(oiginalApp).clone(),
@@ -16,9 +22,12 @@ exports.register = function(oiginalApp) {
 	// init resources
 	require('./resources')(app);
 
+	console.log('');
+
 	// serve index for all app pages, add this listener after all other
 	// listeners
 	app.httpServer.addRequestListener(function(req, res, next) {
+		console.log(1234);
 		if (req.url.indexOf('/data.io.js') === -1) {
 			var indexHtml = indexTemplate({
 				env: env,
