@@ -7,11 +7,8 @@ var React = require('react'),
 	ProjectView = require('./components/projects/view'),
 	BuildView = require('./components/builds/view'),
 	connect = require('./connect'),
-	resources = require('./resources'),
-	Router = require('react-router');
-
-var Route = React.createFactory(Router.Route),
-	DefaultRoute = React.createFactory(Router.DefaultRoute);
+	Router = require('react-router'),
+	Route = React.createFactory(Router.Route);
 
 var routes = (
 	Route({handler: App},
@@ -37,4 +34,3 @@ connect.io.on('connect', function() {
 		);
 	});
 });
-
