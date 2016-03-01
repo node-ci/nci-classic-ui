@@ -1,9 +1,9 @@
 'use strict';
 
 var dataio = require('data.io'),
-	Server = require('./node_modules/data.io/lib/server'),
-	Resource = require('./node_modules/data.io/lib/resource'),
-	Sync = require('./node_modules/data.io/lib/sync');
+	Server = require('data.io/lib/server'),
+	Resource = require('data.io/lib/resource'),
+	Sync = require('data.io/lib/sync');
 
 /*
  * Patch server and resource to provide ability to send data to all clients
