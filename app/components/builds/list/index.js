@@ -4,6 +4,7 @@ var _ = require('underscore'),
 	React = require('react'),
 	Reflux = require('reflux'),
 	Item = require('../item'),
+	BuildActions = require('../../../actions/build'),
 	buildsStore = require('../../../stores/builds'),
 	template = require('./index.jade');
 
@@ -20,6 +21,12 @@ var Component = React.createClass({
 			}
 		})
 	],
+	onShowMoreBuilds: function(projectName) {
+		BuildActions.readAll({
+			projectName: projectName,
+			limit: this.state.items.length + 20
+		});
+	},
 	render: template.locals({
 		Item: Item
 	})
