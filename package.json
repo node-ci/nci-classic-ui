@@ -71,6 +71,6 @@
     "watchify": "3.6.1"
   },
   "peerDependencies": {
-    "nci": "0.9.x"
+    "nci": "0.9.x || 0.10.x"
   }
 }
