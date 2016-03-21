@@ -58,7 +58,8 @@ var Component = React.createClass({
 		Terminal: Terminal,
 		Link: Router.Link,
 		BuildSidebar: BuildSidebar,
-		ProjectHeader: ProjectHeader
+		ProjectHeader: ProjectHeader,
+		_: _
 	}).extend(CommonComponents))
 });
 
