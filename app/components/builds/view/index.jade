@@ -125,13 +125,12 @@ if this.state.build
 					h2 stderr:
 					.alert(style="whiteSpace: pre;")!= ansiUp.ansi_to_html(this.state.build.error.stderr)
 
-
-			h2
-				i.fa.fa-fw.fa-terminal
-				| 
-				| Console output
 			.build-view_terminal
 				if this.state.showConsole
+					h2
+						i.fa.fa-fw.fa-terminal
+						| 
+						| Console output
 					Terminal(build=this.state.build.id, showPreloader=true)
 
 					if this.state.build.completed
@@ -146,9 +145,8 @@ if this.state.build
 								|  
 								Duration(value=(this.state.build.endDate - this.state.build.startDate))
 				else
-					.well.text-center
+					.text-center
 						button.btn.btn-primary(onClick=this.toggleConsole)
-							i.fa.fa-fw.fa-refresh
+							i.fa.fa-fw.fa-terminal
 							| 
-							| Show full console output
-
+							| Show console output
