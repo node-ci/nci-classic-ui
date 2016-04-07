@@ -77,8 +77,9 @@ if this.state.build
 								| , finished
 								| 
 								DateTime(value=this.state.build.endDate)
+								| , took
 								| 
-								Duration(value=(this.state.build.endDate - this.state.build.startDate), withSuffix=true, title=durationTitle)
+								Duration(value=(this.state.build.endDate - this.state.build.startDate), title=durationTitle)
 
 				mixin rev(rev, prefix)
 					- prefix = prefix || ''; 
@@ -124,12 +125,14 @@ if this.state.build
 					if this.state.build.completed
 						if this.state.build.error
 							.text-center.alert.alert-danger
-								| Build ended with error 
-								Duration(value=(this.state.build.endDate - this.state.build.startDate), withSuffix=true)
+								| Build ended with error, took
+								| 
+								Duration(value=(this.state.build.endDate - this.state.build.startDate))
 						else
 							.text-center.alert.alert-success
-								| Build successfully completed  
-								Duration(value=(this.state.build.endDate - this.state.build.startDate), withSuffix=true)
+								| Build successfully completed, took
+								|  
+								Duration(value=(this.state.build.endDate - this.state.build.startDate))
 				else
 					.well.text-center
 						button.btn.btn-primary(onClick=this.toggleConsole)
