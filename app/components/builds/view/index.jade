@@ -123,7 +123,7 @@ if this.state.build
 
 				if this.state.build.error.stderr
 					h2 stderr:
-					.alert(style="whiteSpace: pre;")!= ansiUp.ansi_to_html(this.state.build.error.stderr)
+					.alert(style="whiteSpace: pre-wrap;")!= ansiUp.ansi_to_html(this.state.build.error.stderr)
 
 			.build-view_terminal
 				if this.state.showConsole
