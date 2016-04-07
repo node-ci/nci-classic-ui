@@ -42,14 +42,6 @@ if this.state.build
 						span= initiator.type
 
 			.build-view_info
-				if this.state.build.error
-					if this.state.build.error.message
-						.text-center.alert.alert-danger
-							| Error:
-							div= this.state.build.error.message
-					if this.state.build.error.stderr
-						pre= this.state.build.error.stderr
-
 				.row
 					.col-md-12
 						p 
@@ -115,6 +107,24 @@ if this.state.build
 							.col-md-offset-4.col-md-8
 								p
 									mixin rev(change, String(number) + '. ')
+
+			if this.state.build.error
+				if this.state.build.error.message
+					h2
+						| Build
+						| 
+						if this.state.build.currentStep
+							| step "
+							span= this.state.build.currentStep
+							| "
+							| 
+						| failed with error:
+					.alert= this.state.build.error.message
+
+				if this.state.build.error.stderr
+					h2 stderr:
+					.alert(style="whiteSpace: pre;")!= ansiUp.ansi_to_html(this.state.build.error.stderr)
+
 
 			h2
 				i.fa.fa-fw.fa-terminal

@@ -10,7 +10,8 @@ var _ = require('underscore'),
 	BuildSidebar = require('./sidebar'),
 	CommonComponents = require('../../common'),
 	ProjectHeader = require('../../projects/header'),
-	template = require('./index.jade');
+	template = require('./index.jade'),
+	ansiUp = require('ansi_up');
 
 var Component = React.createClass({
 	mixins: [Reflux.ListenerMixin],
@@ -59,7 +60,8 @@ var Component = React.createClass({
 		Link: Router.Link,
 		BuildSidebar: BuildSidebar,
 		ProjectHeader: ProjectHeader,
-		_: _
+		_: _,
+		ansiUp: ansiUp
 	}).extend(CommonComponents))
 });
 
