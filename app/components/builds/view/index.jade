@@ -103,6 +103,8 @@ if this.state.build
 									| " by
 									| 
 									= rev.author
+							else if this.state.build.status === 'in-progress'
+								| Pulling scm changes...
 							else
 								| -
 
