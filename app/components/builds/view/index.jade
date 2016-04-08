@@ -27,7 +27,24 @@ if this.state.build
 				span= this.state.build.number
 
 				.small.text-muted
-					| Initiated by 
+					- var node = this.state.build.node;
+					if node
+						| On
+						| 
+						span= node.type
+						| 
+						| node
+						if node.type !== node.name
+							| 
+							| "
+							span= node.name
+							| "
+						| , initiated by
+						| 
+					else
+						| Initiated by
+						| 
+
 					- var initiator = this.state.build.initiator;
 					if initiator.type === 'build'
 						Link(to="project", params={name: initiator.project.name})
