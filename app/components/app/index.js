@@ -10,7 +10,7 @@ var Component = React.createClass({
 	componentDidMount: function() {
 		ProjectActions.readAll();
 	},
-	render: function() { 
+	render: function() {
 		return template({
 			Link: Router.Link,
 			Header: Header,

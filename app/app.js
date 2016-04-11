@@ -11,17 +11,10 @@ var React = require('react'),
 	Route = React.createFactory(Router.Route);
 
 var routes = (
-	Route({handler: App},
-		Route({
-			name: 'dashboard',
-			path: '/',
-			handler: Dashboard
-		}),
-		Route({
-			name: 'project',
-			path: 'projects/:name',
-			handler: ProjectView
-		}),
+	Route(
+		{handler: App},
+		Route({name: 'dashboard', path: '/', handler: Dashboard}),
+		Route({name: 'project', path: 'projects/:name', handler: ProjectView}),
 		Route({name: 'build', path: 'builds/:id', handler: BuildView})
 	)
 );

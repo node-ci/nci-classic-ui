@@ -1,7 +1,6 @@
 'use strict';
 
-var _ = require('underscore'),
-	Reflux = require('reflux'),
+var Reflux = require('reflux'),
 	ProjectActions = require('../actions/project'),
 	resources = require('../resources'),
 	resource = resources.projects;
@@ -14,7 +13,7 @@ var Store = Reflux.createStore({
 		return this.project;
 	},
 
-	onChange: function(data, action) {
+	onChange: function(data) {
 		this.trigger(data.project);
 	},
 

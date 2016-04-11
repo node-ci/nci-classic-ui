@@ -18,10 +18,8 @@ var Store = Reflux.createStore({
 
 	onGetTail: function(params) {
 		var self = this;
-		console.time('>>> getBuildLogTail');
 		resource.sync('getBuildLogTail', params, function(err, data) {
 			if (err) throw err;
-			console.timeEnd('>>> getBuildLogTail');
 			self.data = data;
 			self.trigger(self.data);
 		});
@@ -29,11 +27,8 @@ var Store = Reflux.createStore({
 
 	onGetLines: function(params) {
 		var self = this;
-		console.time('>>> getBuildLogLines');
 		resource.sync('getBuildLogLines', params, function(err, data) {
 			if (err) throw err;
-			console.timeEnd('>>> getBuildLogLines');
-			console.log('>>> isLast log lines = ', data.isLast);
 			self.data.lines = data.lines;
 			self.trigger(self.data);
 		});

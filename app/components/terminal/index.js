@@ -93,7 +93,7 @@ var Component = React.createClass({
 		}
 
 		var self = this;
-		terminal.insertAdjacentHTML('beforeend', 
+		terminal.insertAdjacentHTML('beforeend',
 			_(data.slice(this.linesCount)).map(function(line, index) {
 				return self.makeCodeLine(line, self.linesCount + index);
 			}).join('')

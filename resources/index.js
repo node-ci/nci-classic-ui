@@ -5,8 +5,8 @@ var _ = require('underscore'),
 	helpers = require('./helpers');
 
 module.exports = function(app) {
-	_(['builds', 'projects']).each(function(resource) {
-		var resource = require('./' + resource)(app);
+	_(['builds', 'projects']).each(function(resourceName) {
+		var resource = require('./' + resourceName)(app);
 		resource.use(errorHandler(app));
 	});
 
@@ -25,7 +25,8 @@ module.exports = function(app) {
 		}
 
 		buildsResource.clientEmitSync('change', {
-			buildId: build.id, changes: changes
+			buildId: build.id,
+			changes: changes
 		});
 	});
 

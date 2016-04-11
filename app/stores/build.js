@@ -10,7 +10,7 @@ var Store = Reflux.createStore({
 	listenables: BuildActions,
 	build: null,
 
-	onChange: function(data, action) {
+	onChange: function(data) {
 		if (this.build && (data.buildId === this.build.id)) {
 			_(this.build).extend(data.changes);
 			this.trigger(this.build);

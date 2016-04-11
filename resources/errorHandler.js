@@ -10,4 +10,4 @@ module.exports = function(app) {
 			err.stack || err
 		);
 	};
-}
+};

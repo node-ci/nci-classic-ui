@@ -4,7 +4,6 @@
     // options
     "newcap": false,
     "supernew": false,
-    "unused": true,
     "maxlen": 80,
     "smarttabs": true,
     "indent": 1,
