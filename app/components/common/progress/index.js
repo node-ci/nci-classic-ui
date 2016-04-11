@@ -6,17 +6,15 @@ var React = require('react'),
 
 module.exports = React.createClass({
 	render: template,
-	_computePercent: function() {
-		var build = this.props.build;
-		return Math.round((Date.now() - build.startDate) /
-										build.project.avgBuildDuration * 100);
-	},
 	componentDidMount: function() {
 		var self = this;
 		var updateCallback = function() {
 			if (self.props.build.status === 'in-progress') {
 				if (self.isMounted()) {
-					self.setState({percent: self._computePercent()});
+					self.setState({
+						duration: Date.now() - self.props.build.startDate,
+						avgDuration: self.props.build.project.avgBuildDuration
+					});
 					_.delay(updateCallback, 100);
 				}
 			}
@@ -25,8 +23,6 @@ module.exports = React.createClass({
 		updateCallback();
 	},
 	getInitialState: function() {
-		return {
-			percent: this._computePercent()
-		};
+		return {};
 	}
 });
