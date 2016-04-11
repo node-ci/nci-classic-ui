@@ -10,6 +10,8 @@ var _ = require('underscore'),
 	BuildSidebar = require('./sidebar'),
 	CommonComponents = require('../../common'),
 	ProjectHeader = require('../../projects/header'),
+	ProjectActions = require('../../../actions/project'),
+	projectStore = require('../../../stores/project'),
 	template = require('./index.jade'),
 	ansiUp = require('ansi_up');
 
@@ -23,6 +25,7 @@ var Component = React.createClass({
 
 	componentDidMount: function() {
 		this.listenTo(buildStore, this.updateBuild);
+		this.listenTo(projectStore, this.updateProject);
 	},
 
 	componentWillReceiveProps: function(nextProps) {
@@ -36,13 +39,27 @@ var Component = React.createClass({
 	updateBuild: function(build) {
 		if (build) {
 			BuildActions.readAll({projectName: build.project.name});
+			// load project config for showing it at project header
+			if (
+				_(this.state.project.name).isEmpty() ||
+				this.state.project.name !== build.project.name
+			) {
+				ProjectActions.read({name: build.project.name});
+			}
 		}
 		this.setState({build: build});
+	},
+
+	updateProject: function(project) {
+		if (project.name === this.state.build.project.name) {
+			this.setState({project: project});
+		}
 	},
 
 	getInitialState: function() {
 		return {
 			build: null,
+			project: {},
 			showConsole: false
 		};
 	},
