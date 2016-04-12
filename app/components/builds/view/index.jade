@@ -90,10 +90,6 @@ if this.state.build
 								| 
 								Duration(value=(this.state.build.endDate - this.state.build.startDate), title=durationTitle)
 
-				mixin rev(rev, prefix)
-					- prefix = prefix || ''; 
-					span(title= 'Revision: ' + rev.id + ' by ' + rev.author)= prefix + rev.comment
-
 				- var scm = this.state.build.scm;
 				- var rev = scm && scm.rev;
 				- var changes = scm && scm.changes;
@@ -114,7 +110,7 @@ if this.state.build
 									| no changes, current revision is
 									| 
 									| "
-									mixin rev(rev)
+									RevisionsItem(revision=rev)
 									| " by
 									| 
 									= rev.author
@@ -124,12 +120,7 @@ if this.state.build
 								| -
 
 				if changes && changes.length
-					each change, index in changes
-						- var number = index + 1; 
-						.row(key= 'scm-change-' + number)
-							.col-md-offset-4.col-md-8
-								p
-									mixin rev(change, String(number) + '. ')
+					RevisionsList(revisions=changes)
 
 			if this.state.build.error
 				if this.state.build.error.message

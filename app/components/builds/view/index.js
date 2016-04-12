@@ -9,6 +9,8 @@ var _ = require('underscore'),
 	Terminal = require('../../terminal'),
 	BuildSidebar = require('./sidebar'),
 	CommonComponents = require('../../common'),
+	RevisionsItem = require('../../revisions/item'),
+	RevisionsList = require('../../revisions/list'),
 	ProjectHeader = require('../../projects/header'),
 	ProjectActions = require('../../../actions/project'),
 	projectStore = require('../../../stores/project'),
@@ -74,6 +76,8 @@ var Component = React.createClass({
 
 	render: template.locals(_({
 		Terminal: Terminal,
+		RevisionsItem: RevisionsItem,
+		RevisionsList: RevisionsList,
 		Link: Router.Link,
 		BuildSidebar: BuildSidebar,
 		ProjectHeader: ProjectHeader,
