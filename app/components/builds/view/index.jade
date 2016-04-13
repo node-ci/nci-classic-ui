@@ -115,9 +115,9 @@ if this.state.build
 									| 
 									= rev.author
 							else if this.state.build.status === 'in-progress'
-								| Pulling scm changes...
+								| pulling scm changes...
 							else
-								| -
+								| changes are not received
 
 				if changes && changes.length
 					RevisionsList(revisions=changes)
