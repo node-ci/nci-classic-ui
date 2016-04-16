@@ -6,10 +6,10 @@ var _ = require('underscore'),
 	staticPath = path.join(__dirname, 'static'),
 	indexHtml = fs.readFileSync(staticPath + '/index.html');
 
-exports.register = function(oiginalApp) {
-	var app = _(oiginalApp).clone(),
+exports.register = function(originalApp) {
+	var app = _(originalApp).clone(),
 		socketio = require('socket.io')(app.httpServer);
-	
+
 	app.dataio = require('./dataio')(socketio);
 
 	// init resources
