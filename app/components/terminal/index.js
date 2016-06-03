@@ -6,6 +6,7 @@ var _ = require('underscore'),
 	buildStore = require('../../stores/build'),
 	terminalStore = require('../../stores/terminal'),
 	ansiUp = require('ansi_up'),
+	utils = require('../../utils'),
 	template = require('./index.jade');
 
 var Component = React.createClass({
@@ -43,7 +44,7 @@ var Component = React.createClass({
 		window.onscroll = null;
 	},
 	prepareRow: function(row) {
-		return ansiUp.ansi_to_html(row.replace('\r', ''));
+		return ansiUp.ansi_to_html(utils.escapeHtml(row.replace('\r', '')));
 	},
 	prepareOutput: function(output) {
 		var self = this;

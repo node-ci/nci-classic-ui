@@ -10,3 +10,11 @@ exports.prune = function(str, length) {
 
 	return result.replace(/ $/, words.length ? '...' : '');
 };
+
+exports.escapeHtml = function(str) {
+	return str
+		.replace(/&(?!(\w+|\#\d+);)/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;');
+};
