@@ -6,8 +6,11 @@ var Reflux = require('reflux'),
 
 var Store = Reflux.createStore({
 	listenables: ProjectActions,
-	onRun: function(projectName) {
-		resource.sync('run', {projectName: projectName}, function(err) {
+	onRun: function(projectName, buildParams) {
+		resource.sync('run', {
+			projectName: projectName,
+			buildParams: buildParams
+		}, function(err) {
 			if (err) throw err;
 		});
 	},

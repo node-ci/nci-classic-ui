@@ -85,13 +85,18 @@ module.exports = function(app) {
 	});
 
 	resource.use('run', function(req, res) {
-		var projectName = req.data.projectName;
+		var projectName = req.data.projectName,
+			buildParams = req.data.buildParams;
+
 		logger.log('Run the project: "%s"', projectName);
+
 		app.builds.create({
 			projectName: projectName,
 			initiator: {type: 'user'},
-			queueQueued: true
+			queueQueued: true,
+			buildParams: buildParams
 		});
+
 		res.send();
 	});
 
