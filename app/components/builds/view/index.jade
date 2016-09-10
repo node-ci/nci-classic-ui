@@ -39,6 +39,11 @@ if this.state.build
 							| "
 							span= node.name
 							| "
+						- var env = this.state.build.env;
+						if env
+							| , within "
+							span= env.name
+							| " environment
 						| , initiated by
 						| 
 					else
