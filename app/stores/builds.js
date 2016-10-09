@@ -33,12 +33,15 @@ var Store = Reflux.createStore({
 		if (!data) {
 			return;
 		}
-		var index = _(this.builds).findIndex({id: data.buildId});
-		if (index !== -1) {
-			this.builds.splice(index, 1);
-		}
 
-		this.trigger(this.builds);
+		if (data.buildStatus === 'queued') {
+			var index = _(this.builds).findIndex({id: data.buildId});
+			if (index !== -1) {
+				this.builds.splice(index, 1);
+			}
+
+			this.trigger(this.builds);
+		}
 	},
 
 	init: function() {

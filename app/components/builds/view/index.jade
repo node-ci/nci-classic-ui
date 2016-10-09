@@ -11,6 +11,10 @@ mixin statusBadge(build)
 	if build.status === 'error'
 		span.label.label-danger error
 
+	if build.status === 'canceled'
+		- var canceledBy = this.state.build.canceledBy;
+		span.label.label-warning(title="canceled by #{canceledBy.type}") canceled
+
 if this.state.build
 	.row
 		.col-md-12
@@ -143,6 +147,14 @@ if this.state.build
 				if this.state.build.error.stderr
 					h2 stderr:
 					.alert(style="whiteSpace: pre-wrap;")!= ansiUp.ansi_to_html(this.state.build.error.stderr)
+			else if this.state.build.status === 'canceled'
+				h2
+					| Build canceled
+					| 
+					if this.state.build.currentStep
+						| during step "
+						span= this.state.build.currentStep
+						| "
 
 			.build-view_terminal
 				if this.state.showConsole
@@ -153,12 +165,17 @@ if this.state.build
 					Terminal(build=this.state.build.id, showPreloader=true)
 
 					if this.state.build.completed
-						if this.state.build.error
+						if this.state.build.status === 'error'
 							.text-center.alert.alert-danger
 								| Build ended with error, took
 								| 
 								Duration(value=(this.state.build.endDate - this.state.build.startDate))
-						else
+						else if this.state.build.status === 'canceled'
+							.text-center.alert.alert-warning
+								| Build canceled, took
+								| 
+								Duration(value=(this.state.build.endDate - this.state.build.startDate))
+						else if this.state.build.status === 'done'
 							.text-center.alert.alert-success
 								| Build successfully completed, took
 								|  

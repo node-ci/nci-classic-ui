@@ -31,7 +31,10 @@ module.exports = function(app) {
 	});
 
 	app.builds.on('buildCanceled', function(build) {
-		buildsResource.clientEmitSync('cancel', {buildId: build.id});
+		buildsResource.clientEmitSync('cancel', {
+			buildId: build.id,
+			buildStatus: build.status
+		});
 	});
 
 	app.builds.on('buildLogLines', function(build, lines) {
