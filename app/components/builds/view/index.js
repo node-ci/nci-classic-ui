@@ -15,7 +15,8 @@ var _ = require('underscore'),
 	ProjectActions = require('../../../actions/project'),
 	projectStore = require('../../../stores/project'),
 	template = require('./index.jade'),
-	ansiUp = require('ansi_up');
+	ansiUp = require('ansi_up'),
+	scrollTop = require('simple-scrolltop');
 
 var Component = React.createClass({
 	mixins: [Reflux.ListenerMixin],
@@ -71,7 +72,13 @@ var Component = React.createClass({
 		if (consoleState) {
 			BuildActions.readTerminalOutput(this.state.build);
 		}
+
 		this.setState({showConsole: consoleState});
+
+		// scroll to page top after hiding console
+		if (!consoleState) {
+			scrollTop(0);
+		}
 	},
 
 	render: template.locals(_({
