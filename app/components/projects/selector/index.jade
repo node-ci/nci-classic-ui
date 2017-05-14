@@ -15,10 +15,16 @@
 			each project in this.state.projects
 				li.projects-selector_item(key=project.name)
 					Link.projects-selector_item_link(to="project", params={name: project.name}, onMouseDown=this.onSelectProject(project.name))
-						Scm(scm=project.scm.type)
+						- if (project.archived) {
+							i(title="Project is archived").fa.fa-fw.fa-archive
+						- } else {
+							Scm(scm=project.scm.type)
+						- }
 						span 
 						span= project.name
-					a.projects-selector_item_run(href="javascript:void(0);", onMouseDown=this.onRunProject(project.name))
-						i.fa.fa-fw.fa-play
+
+					if !project.archived
+						a.projects-selector_item_run(href="javascript:void(0);", onMouseDown=this.onRunProject(project.name))
+							i.fa.fa-fw.fa-play
 
 

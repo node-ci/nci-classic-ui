@@ -21,9 +21,15 @@ module.exports = function(app) {
 			filteredProjects = app.projects.filter(function(project) {
 				return project.name.indexOf(nameQuery) !== -1;
 			});
+		} else {
+			filteredProjects = app.projects.filter(function(project) {
+				return !project.archived;
+			});
 		}
 
-		filteredProjects = _(filteredProjects).sortBy('name');
+		filteredProjects = _(filteredProjects).sortBy(function(project) {
+			return Number(Boolean(project.archived)) + '_' + project.name;
+		});
 
 		res.send(filteredProjects);
 	});
