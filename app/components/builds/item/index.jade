@@ -39,9 +39,7 @@ mixin statusText(build)
 							span= build.number
 
 				if build.waitReason
-					span  (
-					span= build.waitReason
-					span , waiting)
+					span(title=build.waitReason)  (waiting for a node)
 
 				if build.status === 'in-progress' && build.currentStep
 					span  (
