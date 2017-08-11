@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react'),
-	ReactDOM = require('react-dom'),
 	Router = require('react-router'),
 	Reflux = require('reflux'),
 	CommonComponents = require('../../common'),
@@ -16,7 +15,7 @@ module.exports = React.createClass({
 
 		document.body.addEventListener('click', this.onBodyClick);
 	},
-	componentWillUnmount: function () {
+	componentWillUnmount: function() {
 		document.body.removeEventListener('click', this.onBodyClick);
 	},
 	getInitialState: function() {
@@ -47,7 +46,7 @@ module.exports = React.createClass({
 			this.setState({opened: false});
 		}
 	},
-	onPreviewClick: function(event) {
+	onPreviewClick: function() {
 		this.setState({opened: true});
 	},
 	onQueryChange: function(event) {
