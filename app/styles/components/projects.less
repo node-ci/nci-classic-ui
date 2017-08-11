@@ -2,64 +2,85 @@
 	position: relative;
 	width: 300px;
 	color: white;
-	cursor: pointer;
+	padding: 7px 0;
 
 	&_preview {
+		display: block;
 		color: rgba(255, 255, 255, 0.5);
-		padding: 5px 25px 5px 5px;
-		&_text {
-			padding-left: 10px;
+		padding: 5px;
+		line-height: 20px;
+		cursor: pointer;
+
+		&-text {
+			margin-left: 10px;
 		}
 	}
 
 	&_input {
-		width: 80%;
-		padding-bottom: 3px;
-		padding-left: 10px;
+		padding: 5px 10px 4px;
 		border: none;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 		background: transparent;
 		outline: none;
+		line-height: 20px;
+		height: 30px;
+		width: 100%;
+		display: block;
 	}
 
 	&_items {
 		position: absolute;
 		width: 100%;
+		margin: 10px 0 0;
 		padding: 0;
-		padding-top: 15px;
 		left: 0;
 		background: @brand-primary;
 		list-style: none;
+		max-height: 400px;
+		max-height: 90vh;
+		overflow: hidden;
+		overflow-y: auto;
 	}
 
 	&_item {
-		.clearfix();
+		position: relative;
+		padding-right: 40px;
 
-		padding: 10px 10px;
-
-		&_link {
-			float: left;
-			width: 90%;
+		&-link {
 			color: white;
 			text-decoration: none;
-			&:hover {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+
+			&:hover,
+			&:active,
+			&:focus {
 				color: white;
-				text-decoration: none;
-			}
-		}
-		&_run {
-			float: right;
-			width: 10%;
-			color: rgba(255, 255, 255, 0.5);
-			text-align: right;
-			&:hover {
-				color: white;
+				background: lighten(@brand-primary, 10%);
 				text-decoration: none;
 			}
 		}
 
-		&:hover {
-			background: lighten(@brand-primary, 10%);
+		&-run {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 40px;
+			padding: 10px;
+			color: rgba(255, 255, 255, 0.5);
+			text-align: right;
+
+			&:hover,
+			&:active,
+			&:focus {
+				color: white;
+				background: lighten(@brand-primary, 10%);
+				text-decoration: none;
+			}
 		}
 	}
 }

@@ -1,30 +1,36 @@
-.projects-selector(href="javascript:void(0);")
-	if !this.state.showSearch
-		span.projects-selector_preview(onClick=this.onSearchProject)
-			i.fa.fa-fw.fa-bars
-			span.projects-selector_preview_text Select a project...
-	else
+.projects-selector(ref=this.selectorRef)
+	if this.state.opened
 		input.projects-selector_input(
 			type="text",
 			value=this.state.searchQuery,
-			onChange=this.onSearchChange,
-			ref=this.onInputMount,
-			onBlur=this.onBlurSearch
+			onChange=this.onQueryChange,
+			ref=this.inputRef
 		)
-		ul.projects-selector_items
-			each project in this.state.projects
-				li.projects-selector_item(key=project.name)
-					Link.projects-selector_item_link(to="project", params={name: project.name}, onMouseDown=this.onSelectProject(project.name))
-						- if (project.archived) {
-							i(title="Project is archived").fa.fa-fw.fa-archive
-						- } else {
-							Scm(scm=project.scm.type)
-						- }
-						span 
-						span= project.name
 
-					if !project.archived
-						a.projects-selector_item_run(href="javascript:void(0);", onMouseDown=this.onRunProject(project.name))
-							i.fa.fa-fw.fa-play
+		if this.state.projects
+			ul.projects-selector_items
+				each project in this.state.projects
+					li.projects-selector_item(key=project.name)
+						Link.projects-selector_item-link(
+							to="project",
+							params={name: project.name},
+							onClick=this.selectProject(project.name)
+						)
+							if project.archived
+								i.fa.fa-fw.fa-archive(title="Project is archived")
+							else
+								Scm(scm=project.scm.type)
 
+							span &nbsp;
+							span=project.name
 
+						if !project.archived
+							a.projects-selector_item-run(
+								href="javascript:void(0);",
+								onClick=this.runProject(project.name)
+							)
+								i.fa.fa-fw.fa-play
+	else
+		span.projects-selector_preview(onClick=this.onPreviewClick)
+			i.fa.fa-fw.fa-bars
+			span.projects-selector_preview-text Select a project...
