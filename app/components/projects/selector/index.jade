@@ -31,6 +31,9 @@
 							)
 								i.fa.fa-fw.fa-play
 	else
-		span.projects-selector_preview(onClick=this.onPreviewClick)
+		a.projects-selector_preview(
+			href="javascript:void(0);",
+			onClick=this.onPreviewClick
+		)
 			i.fa.fa-fw.fa-bars
 			span.projects-selector_preview-text Select a project...
