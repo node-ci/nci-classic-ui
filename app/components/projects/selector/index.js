@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react'),
-	ReactDOM = require('react-dom'),
 	Router = require('react-router'),
 	Reflux = require('reflux'),
 	CommonComponents = require('../../common'),
@@ -13,35 +12,44 @@ module.exports = React.createClass({
 	mixins: [Reflux.ListenerMixin, Router.Navigation],
 	componentDidMount: function() {
 		this.listenTo(projectsStore, this.updateItems);
+
+		document.body.addEventListener('click', this.onBodyClick);
+	},
+	componentWillUnmount: function() {
+		document.body.removeEventListener('click', this.onBodyClick);
 	},
 	getInitialState: function() {
 		return {
-			showSearch: false
+			opened: false,
+			searchQuery: ''
 		};
 	},
-	onRunProject: function(projectName) {
-		ProjectActions.run(projectName);
-		this.setState({showSearch: false});
+	selectorRef: function(ref) {
+		this.selectorElement = ref;
 	},
-	onSelectProject: function(name) {
+	inputRef: function(input) {
+		if (input) input.focus();
+	},
+	selectProject: function(name) {
 		this.transitionTo('project', {name: name});
+		this.setState({opened: false});
+	},
+	runProject: function(name) {
+		ProjectActions.run(name);
+		this.setState({opened: false});
 	},
 	updateItems: function(projects) {
 		this.setState({projects: projects});
 	},
-	onSearchProject: function() {
-		this.setState({showSearch: true});
-	},
-	onInputMount: function(component) {
-		var node = ReactDOM.findDOMNode(component);
-		if (node) {
-			node.focus();
+	onBodyClick: function(event) {
+		if (!this.selectorElement.contains(event.target)) {
+			this.setState({opened: false});
 		}
 	},
-	onBlurSearch: function() {
-		this.setState({showSearch: false});
+	onPreviewClick: function() {
+		this.setState({opened: true});
 	},
-	onSearchChange: function(event) {
+	onQueryChange: function(event) {
 		var query = event.target.value;
 		this.setState({searchQuery: query});
 		ProjectActions.readAll({nameQuery: query});
