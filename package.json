@@ -1,6 +1,6 @@
 {
   "name": "nci-classic-ui",
-  "version": "1.0.9",
+  "version": "1.0.10-update-socketio-to-2-1.alpha.1",
   "description": "First ui for nci",
   "main": "app.js",
   "scripts": {
