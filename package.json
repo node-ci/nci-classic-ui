@@ -1,6 +1,6 @@
 {
   "name": "nci-classic-ui",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "First ui for nci",
   "main": "app.js",
   "scripts": {
